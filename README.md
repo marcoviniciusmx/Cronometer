@@ -13,6 +13,9 @@
   <a href="#-getting-started">Como executar</a>
 </p>
 
+<br>
+
+<img src="./assets/Mockup - Cronômetro.png" alt="Mockup Stopwatch" width="100%">
 ---
 
 ## 🏠 About the project
