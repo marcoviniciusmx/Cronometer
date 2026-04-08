@@ -3,7 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     outline: none;
-    font-family: "Roboto Mono", sans-serif;
+}
+
+body {
+    min-height: 100vh;
 }
 
 .wrapper {
@@ -13,39 +16,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
 }
 
 .main {
+    width: min(100%, 1200px);
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    gap: 10px;
-    border: 1px solid #FFF;
-    border-radius: 15px;
+    padding: 28px 24px;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .text-main {
-    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.text-main h1 {
+    font-family: "Roboto Mono", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
     text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 30px;
+    color: #ffffff;
+    letter-spacing: 1px;
 }
 
 .stopwatch {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 18px;
+    padding: 10px 0;
+    flex-wrap: nowrap;
 }
 
-span {
-    font-size: 8rem;
-    color: #FFF;
+.stopwatch>span {
+    font-size: clamp(2.4rem, 5vw, 5rem);
+    color: #ffffff;
     text-align: center;
     position: relative;
-    bottom: 35px;
+    bottom: 12px;
+    line-height: 1;
 }
 
 .hours,
@@ -57,57 +73,231 @@ span {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    min-width: 0;
 }
 
 .hour-counter,
 .minutes-counter,
 .secounds-counter,
 .millisecounds-counter {
-    font-size: 7rem;
-    border: 10px double antiquewhite;
-    padding: 10px;
-    border-radius: 40px 50px;
+    font-family: "Roboto Mono", sans-serif;
+    font-size: clamp(2.2rem, 5vw, 5rem);
+    border: 6px double antiquewhite;
+    padding: 14px 18px;
+    border-radius: 28px 34px;
+    color: #ffffff;
+    min-width: 120px;
+    text-align: center;
+    line-height: 1;
 }
 
 .hour-text,
 .secounds-text,
 .minutes-text,
 .millisecounds-text {
-    font-size: 2.2rem;
+    font-size: clamp(0.95rem, 2vw, 1.5rem);
     font-weight: bold;
     font-family: "Roboto", sans-serif;
-    margin-top: 20px;
+    margin-top: 6px;
+    color: #ffffff;
+    text-align: center;
 }
 
 .buttons {
     display: flex;
-    justify-content: flex-start;
-    gap: 300px;
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding-top: 10px;
+    flex-wrap: wrap;
 }
 
 .to-start,
 .to-stop,
 .restart {
-    padding: 7px;
-    font-size: 1.5rem;
-    border-radius: 15px;
+    padding: 12px 18px;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    border-radius: 14px;
     border: none;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
-    width: 150px;
-    height: auto;
+    width: 160px;
+    min-height: 52px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
 
-    &:hover {
-        opacity: .8;
-        scale: 1.04;
-        transition: .4s ease-in-out;
+.to-start:hover,
+.to-stop:hover,
+.restart:hover {
+    opacity: 0.85;
+    transform: scale(1.04);
+}
+
+.to-start:active,
+.to-stop:active,
+.restart:active {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+/* notebook */
+@media (max-width: 1100px) {
+    .main {
+        width: min(100%, 980px);
+        padding: 24px 20px;
     }
 
-    &:active {
-        opacity: .4;
-        transition: .2s ease-in-out;
+    .stopwatch {
+        gap: 14px;
+    }
+
+    .hour-counter,
+    .minutes-counter,
+    .secounds-counter,
+    .millisecounds-counter {
+        min-width: 100px;
+        padding: 12px 14px;
+    }
+}
+
+/* tablet */
+@media (max-width: 900px) {
+    .wrapper {
+        padding: 18px;
+    }
+
+    .main {
+        padding: 22px 16px;
+    }
+
+    .stopwatch {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 16px 12px;
+        justify-items: center;
+    }
+
+    .stopwatch>span {
+        display: none;
+    }
+
+    .hours,
+    .minutes,
+    .secounds,
+    .millisecounds {
+        width: 100%;
+    }
+
+    .hour-counter,
+    .minutes-counter,
+    .secounds-counter,
+    .millisecounds-counter {
+        width: 100%;
+        max-width: 180px;
+        min-width: 0;
+    }
+
+    .buttons {
+        gap: 14px;
+    }
+
+    .to-start,
+    .to-stop,
+    .restart {
+        width: 180px;
+    }
+}
+
+/* celular */
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 14px;
+    }
+
+    .main {
+        padding: 18px 12px;
+        gap: 16px;
+        border-radius: 16px;
+    }
+
+    .text-main h1 {
+        letter-spacing: 0.5px;
+    }
+
+    .stopwatch {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .hour-counter,
+    .minutes-counter,
+    .secounds-counter,
+    .millisecounds-counter {
+        max-width: 100%;
+        font-size: clamp(2rem, 10vw, 3rem);
+        border-width: 5px;
+        padding: 12px;
+        border-radius: 20px 24px;
+    }
+
+    .hour-text,
+    .secounds-text,
+    .minutes-text,
+    .millisecounds-text {
+        font-size: 1rem;
+        margin-top: 4px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 4px;
+    }
+
+    .to-start,
+    .to-stop,
+    .restart {
+        width: 100%;
+        max-width: 280px;
+        min-height: 48px;
+        font-size: 0.95rem;
+    }
+}
+
+/* celular pequeno */
+@media (max-width: 380px) {
+    .wrapper {
+        padding: 10px;
+    }
+
+    .main {
+        padding: 16px 10px;
+    }
+
+    .text-main h1 {
+        font-size: 1.7rem;
+    }
+
+    .hour-counter,
+    .minutes-counter,
+    .secounds-counter,
+    .millisecounds-counter {
+        font-size: 1.9rem;
+        padding: 10px;
+    }
+
+    .hour-text,
+    .secounds-text,
+    .minutes-text,
+    .millisecounds-text {
+        font-size: 0.92rem;
+    }
+
+    .to-start,
+    .to-stop,
+    .restart {
+        font-size: 0.9rem;
     }
 }
